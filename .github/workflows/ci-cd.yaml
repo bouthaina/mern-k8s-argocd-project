@@ -86,9 +86,8 @@ jobs:
 
       - name: Update image tags in manifests
         run: |
-          sed -i "s|image: ${{ env.BACKEND_IMAGE }}:.*|image: ${{ env.BACKEND_IMAGE }}:${{ env.BUILD_NUMBER }}|g" /k8s-manifests/backend/backend.yaml
-          sed -i "s|image: ${{ env.FRONTEND_IMAGE }}:.*|image: ${{ env.FRONTEND_IMAGE }}:${{ env.BUILD_NUMBER }}|g" /k8s-manifests/frontend/frontend.yaml
-
+           sed -i "s|image: ${{ env.BACKEND_IMAGE }}:.*|image: ${{ env.BACKEND_IMAGE }}:${{ env.BUILD_NUMBER }}|g" k8s-manifests/k8s-manifests/backend/backend.yaml
+           sed -i "s|image: ${{ env.FRONTEND_IMAGE }}:.*|image: ${{ env.FRONTEND_IMAGE }}:${{ env.BUILD_NUMBER }}|g" k8s-manifests/k8s-manifests/frontend/frontend.yaml
       - name: Commit and push updated manifests
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
